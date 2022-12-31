@@ -1,4 +1,5 @@
 from selenium import webdriver
+import time
 
 
 def get_driver(url):
@@ -20,11 +21,22 @@ def get_driver(url):
     return driver
 
 
+def clean_text(text):
+    """extract only the temp from the text"""
+    _, temp = text.split(': ')
+    return float(temp)
+
+
 def main():
     driver = get_driver('http://automated.pythonanywhere.com')
-    element = driver.find_element(by="xpath",
-                                  value='/html/body/div[1]/div/h1[1]')
-    return element.text
+    xpath = '/html/body/div[1]/div/h1[1]'
+    xpath = '/html/body/div[1]/div/h1[2]'
+    time.sleep(2)
+    element = driver.find_element(
+                        by="xpath",
+                        value=xpath
+    )
+    return clean_text(element.text)
 
 
 print(main())
