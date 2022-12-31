@@ -11,6 +11,10 @@ def get_driver(url):
     options.add_argument('disable-blink-features=AutomationControlled')
     options.add_experimental_option('excludeSwitches', ['enable-automation'])
 
+    """
+    https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/
+    selenium downloads automatically the driver in ~/.cache/...
+    """
     driver = webdriver.Chrome(options=options)
     driver.get(url)
     return driver
